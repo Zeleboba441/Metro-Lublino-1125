@@ -1,0 +1,53 @@
+﻿<Window x:Class="Metro_Lublino_1125.TrenerWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Metro_Lublino_1125"
+        mc:Ignorable="d"
+        Title="Вид спорта" Height="450" Width="800" Background="#FF49D829">
+
+
+    <Window.Resources>
+        <ContextMenu x:Key="listMenu">
+            <MenuItem Header="Добавить" Click="AddTrener"/>
+            <MenuItem Header="Удалить" Click="DeleteTrener"/>
+        </ContextMenu>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+
+        <ListBox Grid.Row="1" SelectedItem="{Binding SelectedTrener}"
+                 ItemsSource="{Binding Treners}" 
+                 DisplayMemberPath="LastName" 
+                 ContextMenu="{StaticResource listMenu}" Background="#FF70781F"
+                 />
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Column="1" DataContext="{Binding SelectedTrener}">
+                <Label Content="Имя"/>
+                <TextBox Text="{Binding FirstName}"/>
+                <Label Content="Отчество"/>
+                <TextBox Text="{Binding Patronymic}"/>
+                <Label Content="Фамилия"/>
+                <TextBox Text="{Binding LastName}"/>
+
+                <Label Content="Пол"/>
+                <ComboBox Height="18" VerticalAlignment="Top">
+                    <TextBlock>Мужской</TextBlock>
+                    <TextBlock>Женский</TextBlock>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
+

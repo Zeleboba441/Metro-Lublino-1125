@@ -1,0 +1,46 @@
+﻿<Window x:Class="Metro_Lublino_1125.SportWin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Metro_Lublino_1125"
+        mc:Ignorable="d"
+        Title="Вид спорта" Height="450" Width="800" Background="#FF49D829">
+
+
+    <Window.Resources>
+        <ContextMenu x:Key="listMenu">
+            <MenuItem Header="Добавить" Click="AddSport"/>
+            <MenuItem Header="Удалить" Click="DeleteSport"/>
+        </ContextMenu>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+
+        <ListBox Grid.Row="1" SelectedItem="{Binding SelectedSport}"
+                 ItemsSource="{Binding Sports}" 
+                 DisplayMemberPath="Name" 
+                 ContextMenu="{StaticResource listMenu}" Background="#FF70781F"
+                 />
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel 
+                DataContext="{Binding SelectedSport}"
+                Orientation="Vertical">
+                <Label Content="Название"/>
+                <TextBox Text="{Binding Name}"/>
+                <Label Content="Код"/>
+                <TextBox Text="{Binding Code}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,75 @@
+﻿<Window x:Class="Metro_Lublino_1125.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Metro_Lublino_1125"
+        mc:Ignorable="d"
+        Title="Пиплы" Height="450" Width="800" Background="#FFD6E44F" WindowStyle="ThreeDBorderWindow">
+    
+    <Window.Resources>
+        <ContextMenu x:Key="listMenu">
+            <MenuItem Header="Добавить" Click="AddPerson"/>
+            <MenuItem Header="Удалить" Click="DeletePerson"/>
+        </ContextMenu>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Menu Grid.ColumnSpan="2" Background="Black" Foreground="White">
+            <MenuItem Header="Меню">
+                <MenuItem Header="Спорт" Click="OpenSports"/>
+                <MenuItem Header="Тренер" Click="OpenTreners"/>
+                
+                
+            </MenuItem>
+        </Menu>
+
+        <ListBox Grid.Row="1" SelectedItem="{Binding SelectedPerson}"
+                 ItemsSource="{Binding Persons}" 
+                 DisplayMemberPath="LastName" 
+                 ContextMenu="{StaticResource listMenu}" Background="#FF70781F"
+                 />
+        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Vertical">
+            <StackPanel 
+                DataContext="{Binding SelectedPerson}"
+                Orientation="Vertical">
+                <Label Content="Имя"/>
+                <TextBox Text="{Binding FirstName}"/>
+                <Label Content="Отчество"/>
+                <TextBox Text="{Binding Patronymic}"/>
+                <Label Content="Фамилия"/>
+                <TextBox Text="{Binding LastName}"/>
+                <Label Content="Дата рождения"/>
+                <DatePicker SelectedDate="{Binding Data}" />
+                <Label Content="Рост"/>
+                <TextBox Text="{Binding Growth}"/>
+                <Label Content="Вес"/>
+                <TextBox Text="{Binding Weigth}"/>
+            </StackPanel>
+            
+            <Label Content="Тренеры"/>
+            <ComboBox ItemsSource="{Binding Treners}" 
+                      SelectedItem="{Binding SelectedPerson.Trener}"
+                      DisplayMemberPath="LastName"/>
+
+        
+        <Label Content="Спорт"/>
+        <ComboBox ItemsSource="{Binding Sports}" 
+                      SelectedItem="{Binding SelectedSport.Sport}"
+                      DisplayMemberPath="Name"/>
+
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>
